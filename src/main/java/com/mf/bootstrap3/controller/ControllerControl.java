@@ -84,7 +84,7 @@ public class ControllerControl {
         String name = userDetails.getUsername();
         User user = userService.getByName(name);
         model.addAttribute("user", user);
-        return "user_page";
+        return "userPage";
     }
 
 }

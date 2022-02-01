@@ -21,8 +21,10 @@
         </li>
     </ul>
 </nav>
+<!--Конец навигационной панели-->
 <div class="container-fluid bg-light">
     <div class="row">
+        <!--Левый блок админ-панели-->
         <div class="col-sm-2 bg-white min-vh-100">
             <ul class="nav nav-pills flex-column"><br><br><br>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
@@ -33,6 +35,8 @@
                 </li>
             </ul>
         </div>
+        <!--Конец левого блока-->
+        <!--Правый блок админ панели-->
         <div class="col-sm-10 bg-light"><br><br><br>
             <p>
             <h2>User Info-Page</h2>
@@ -67,6 +71,8 @@
         </div>
     </div>
 </div>
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

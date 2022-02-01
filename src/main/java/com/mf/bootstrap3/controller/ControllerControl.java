@@ -8,19 +8,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 
 @Controller
-public class ControllerContr {
+public class ControllerControl {
 
     private final UserService userService;
     private final RoleService roleService;
 
-    public ControllerContr(UserService userService, RoleService roleService) {
+    public ControllerControl(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -86,7 +84,7 @@ public class ControllerContr {
         String name = userDetails.getUsername();
         User user = userService.getByName(name);
         model.addAttribute("user", user);
-        return "userPage";
+        return "user_page";
     }
 
 }

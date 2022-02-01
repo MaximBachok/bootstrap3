@@ -24,8 +24,8 @@ public class DataBaseInit {
     private void addUsersInDB() {
         User admin = new User("root", "root", 99, "root");
         User user = new User("user", "user", 15, "user");
-        Role adminRole = new Role("ROLE_ADMIN");
-        Role userRole = new Role("ROLE_USER");
+        Role adminRole = new Role("ADMIN");
+        Role userRole = new Role("USER");
         roleService.addRole(adminRole);
         roleService.addRole(userRole);
         admin.setOneRole(adminRole);

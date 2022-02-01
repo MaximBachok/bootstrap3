@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,20 +19,15 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "Name", unique = true)
-    @NotBlank
     private String name;
 
     @Column(name = "Surname")
-    @NotBlank
     private String surname;
 
     @Column(name = "Age", nullable = false)
-    @Min(value = 1)
-    @Max(value = 110)
     private int age;
 
     @Column(name = "password", nullable = false)
-    @NotBlank
     private String pass;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -83,7 +77,7 @@ public class User implements UserDetails {
     }
 
     public Set<Role> setOneRole(Role r) {
-        if (roles == null) {
+        if(roles == null) {
             roles = new HashSet<>();
         }
         roles.add(r);
@@ -113,6 +107,7 @@ public class User implements UserDetails {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
+                ", roles=" + roles +
                 '}';
     }
 
@@ -168,4 +163,3 @@ public class User implements UserDetails {
         return Objects.hash(id, name, surname, age, pass, roles);
     }
 }
-

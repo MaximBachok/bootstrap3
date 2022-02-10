@@ -15,6 +15,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RestController
+@RequestMapping("/api")
 public class ControllerUser {
 
     private UserServiceImpl userService;

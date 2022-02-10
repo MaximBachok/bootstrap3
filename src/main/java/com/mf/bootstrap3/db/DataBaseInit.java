@@ -3,34 +3,31 @@ package com.mf.bootstrap3.db;
 
 import com.mf.bootstrap3.model.Role;
 import com.mf.bootstrap3.model.User;
-import com.mf.bootstrap3.service.RoleService;
-import com.mf.bootstrap3.service.UserService;
+import com.mf.bootstrap3.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
+import java.util.HashSet;
 
 @Component
 public class DataBaseInit {
 
-    private final UserService userService;
-    private final RoleService roleService;
+    private UserRepository userRepository;
 
-    public DataBaseInit(UserService userService, RoleService roleService) {
-        this.userService = userService;
-        this.roleService = roleService;
+    @Autowired
+    public DataBaseInit(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @PostConstruct
-    private void addUsersInDB() {
-        User admin = new User("root", "root", 99, "root");
-        User user = new User("user", "user", 15, "user");
-        Role adminRole = new Role("ADMIN");
-        Role userRole = new Role("USER");
-        roleService.addRole(adminRole);
-        roleService.addRole(userRole);
-        admin.setOneRole(adminRole);
-        user.setOneRole(userRole);
-        userService.addUser(admin);
-        userService.addUser(user);
+    public void initDB() {
+        if (userRepository.findByUserName("admin") == null) {
+            userRepository.save(new User
+                    (1L, "admin", "admin", (byte) 25,
+                            "admin@admin.com", "admin",
+                            true, new HashSet<>(Collections.singleton(new Role("ADMIN")))));
+        }
     }
 }
